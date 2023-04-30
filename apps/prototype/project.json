@@ -66,6 +66,12 @@
       "options": {
         "lintFilePatterns": ["apps/prototype/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional"
+      }
     }
   },
   "tags": ["portal"]
