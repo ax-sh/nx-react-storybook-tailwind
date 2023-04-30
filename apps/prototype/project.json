@@ -1,0 +1,72 @@
+{
+  "name": "prototype",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/prototype/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/prototype"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "prototype:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "prototype:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "prototype:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "prototype:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "prototype:build:development"
+        },
+        "production": {
+          "buildTarget": "prototype:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/prototype"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/prototype"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/prototype/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": ["portal"]
+}
